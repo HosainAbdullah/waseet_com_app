@@ -17,7 +17,7 @@ Color iClickHover = Colors.blue.shade100;
 // مقدار الفراغ الخارجي في كل الشاشات
 const double iPaddingAllScreen = 20;
 // Fonts
-const iTextFamily = 'Tajawal';
+const iTextFamily = 'URWDINArabic';
 const double iFontSize = 14;
 const double iFontSizeHeader = 18;
 const double iFontSizeSubHeader = 16;

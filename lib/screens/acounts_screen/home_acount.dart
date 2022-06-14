@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:path/path.dart';
 import 'package:waseet_com_app/const.dart';
+import 'package:waseet_com_app/core/routes.dart';
 import 'package:waseet_com_app/screens/about_app/about_app.dart';
 import 'package:waseet_com_app/screens/acounts_screen/assess_screen/assess.dart';
+import 'package:waseet_com_app/screens/acounts_screen/user_profile.dart';
 import 'package:waseet_com_app/screens/common_questions_screen/common_questions.dart';
 import 'package:waseet_com_app/screens/complaints_screen/complaints.dart';
 import 'package:waseet_com_app/screens/connect_me_screen/connect_me.dart';
+import 'package:waseet_com_app/screens/registration_screen/model/registr_user.dart';
+import 'package:waseet_com_app/screens/registration_screen/service/user_hive.dart';
 import 'package:waseet_com_app/screens/widgets/appbarwidgte.dart';
+import 'package:waseet_com_app/services/init_boxes_hive.dart';
 
 class HomeAcount extends StatelessWidget {
   const HomeAcount({Key? key}) : super(key: key);
@@ -236,115 +243,28 @@ class Body extends StatelessWidget {
               //     ),
               //   ),
               // ),
-              Center(
-                child: InkWell(
-                  child: Text(
-                    'تسجيل الخروج',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ),
-              )
+              ValueListenableBuilder<Box<UserModel>>(
+                valueListenable: Boxes.getBoxUsers().listenable(),
+                builder: (context, boxData, child) {
+                  final user = boxData.values.last;
+                  return Center(
+                    child: InkWell(
+                      onTap: () {
+                        OpHiveUser().deleteUser(user);
+                        Navigator.pushNamed(context, AppRoutes.welcome.name!);
+                      },
+                      child: Text(
+                        'تسجيل الخروج',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class UserProfile extends StatelessWidget {
-  const UserProfile({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Card(
-          elevation: 2,
-          margin: EdgeInsets.zero,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 40.0),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage('assets/image/us.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    style: Theme.of(context).textTheme.headline6,
-                    children: [
-                      const TextSpan(text: 'محمد أحمد حسام الدين'),
-                      const TextSpan(text: '\n'),
-                      const TextSpan(text: '966554837738+'),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 10,
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 12,
-              ),
-              Container(
-                width: (MediaQuery.of(context).size.width) / 2.5,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: Colors.green.shade100,
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                ),
-                child: const Center(
-                  child: Text(
-                    'الرصيد المتاح 12738 ر.س',
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                width: (MediaQuery.of(context).size.width) / 2.5,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                ),
-                child: const Center(
-                  child: Text(
-                    'الرصيد المحجوز 12738 ر.س',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.pink,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

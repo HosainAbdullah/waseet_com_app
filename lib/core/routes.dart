@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waseet_com_app/screens/acounts_screen/home_acount.dart';
-import 'package:waseet_com_app/screens/client_requests/client_requests.dart';
+import 'package:waseet_com_app/screens/client_requests/clie.dart';
+// import 'package:waseet_com_app/screens/client_requests/client_requests.dart';
 import 'package:waseet_com_app/screens/create_contract_screen/contract_details.dart';
 import 'package:waseet_com_app/screens/create_contract_screen/create_contract.dart';
 import 'package:waseet_com_app/screens/home_screen/home.dart';
@@ -28,7 +29,7 @@ enum AppRoutes {
   clientrequests, // شاشه طلباتي
   showmessages, // شاشه طلبات العملاء
   homeacount, // شاشه حسابي
-  contractdetails // شاشخ تفاصيل العقد
+  contractdetails // شاشه تفاصيل العقد
 }
 
 extension StringValues on AppRoutes {
@@ -60,7 +61,7 @@ extension StringValues on AppRoutes {
         AppRoutes.newpassword: const NewPassword(),
         AppRoutes.notifications: const Notifications(),
         AppRoutes.createcontract: const CreateContract(),
-        AppRoutes.clientrequests: const ClientRequests(),
+        AppRoutes.clientrequests: ClientRequests(),
         AppRoutes.showmessages: const ShowMessages(),
         AppRoutes.homeacount: const HomeAcount(),
         AppRoutes.contractdetails: const ContractDetails(),
