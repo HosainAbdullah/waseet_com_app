@@ -71,6 +71,7 @@ class UserProfile extends StatelessWidget {
             );
           },
         ),
+        
         Positioned(
           bottom: 10,
           child: Row(

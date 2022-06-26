@@ -85,13 +85,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         textAlign: TextAlign.right,
                         style: Theme.of(context).textTheme.bodyLarge,
                         controller: phoneControler,
-                        dropdownTextStyle:
-                            Theme.of(context).textTheme.bodyLarge,
-                        dropdownDecoration: const BoxDecoration(),
-                        searchText: 'أختر الدوله',
                         pickerDialogStyle: PickerDialogStyle(
                           countryNameStyle:
                               Theme.of(context).textTheme.bodyLarge,
+                          searchFieldInputDecoration: InputDecoration(
+                            hintText: 'أكتب أسم الدوله',
+                            hintStyle: Theme.of(context).textTheme.bodyLarge,
+                          ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'رقم الجوال',
@@ -148,6 +148,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                           initBox();
                           setState(() {});
+                        } else if (users!.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: iBackgroundButton,
+                              duration: const Duration(seconds: 5),
+                              content: Text(
+                                textAlign: TextAlign.center,
+                                ' تأكد أنك قمت بأنشاء حساب من قبل ',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ),
+                          );
                         } else {
                           users!.forEach((element) {
                             if (element.phoneNumber == newPhoneAndCoun) {
@@ -266,8 +278,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         width: iMarginCard - 10,
                       ),
-                      GestureDetector(
-                        onTap: () {},
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.welcome.name!);
+                        },
                         child: Text(
                           'سجل الان',
                           style: Theme.of(context)

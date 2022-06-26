@@ -31,9 +31,11 @@ class WidgetPasswordFormField extends StatelessWidget {
         textInputAction: TextInputAction.next,
         obscureText: true,
         inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(
-            r'^[A-Za-z0-9]+',
-          )),
+          FilteringTextInputFormatter.allow(
+            RegExp(
+              r'^[A-Za-z0-9]+',
+            ),
+          ),
         ],
         controller: controller,
         validator: (pass) {

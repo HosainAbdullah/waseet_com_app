@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waseet_com_app/screens/acounts_screen/edit_Profile_user.dart';
 import 'package:waseet_com_app/screens/acounts_screen/home_acount.dart';
 import 'package:waseet_com_app/screens/client_requests/clie.dart';
 // import 'package:waseet_com_app/screens/client_requests/client_requests.dart';
@@ -29,7 +30,8 @@ enum AppRoutes {
   clientrequests, // شاشه طلباتي
   showmessages, // شاشه طلبات العملاء
   homeacount, // شاشه حسابي
-  contractdetails // شاشه تفاصيل العقد
+  contractdetails, // شاشه تفاصيل العقد
+  editprofileuser
 }
 
 extension StringValues on AppRoutes {
@@ -48,6 +50,7 @@ extension StringValues on AppRoutes {
         AppRoutes.showmessages: '/showmessages',
         AppRoutes.homeacount: '/homeacount',
         AppRoutes.contractdetails: '/contractdetails',
+        AppRoutes.editprofileuser: '/editprofileuser',
       }[this];
 
   Widget? get screen => {
@@ -65,6 +68,7 @@ extension StringValues on AppRoutes {
         AppRoutes.showmessages: const ShowMessages(),
         AppRoutes.homeacount: const HomeAcount(),
         AppRoutes.contractdetails: const ContractDetails(),
+        AppRoutes.editprofileuser: const EditProfileUser(),
       }[this];
 }
 
@@ -87,4 +91,6 @@ final Routes = {
   AppRoutes.homeacount.name!: (context) => AppRoutes.homeacount.screen!,
   AppRoutes.contractdetails.name!: (context) =>
       AppRoutes.contractdetails.screen!,
+  AppRoutes.editprofileuser.name!: (context) =>
+      AppRoutes.editprofileuser.screen!,
 };

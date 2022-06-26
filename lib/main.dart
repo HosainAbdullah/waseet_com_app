@@ -36,6 +36,8 @@ class _MyAppState extends State<MyApp> {
     final box = Boxes.getBoxUsers();
     if (box.keys.length == 0) {
       isRoutes = false;
+    } else if (box.isEmpty) {
+      print('object');
     } else {
       isRoutes = true;
     }

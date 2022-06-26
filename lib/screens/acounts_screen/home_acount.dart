@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:path/path.dart';
 import 'package:waseet_com_app/const.dart';
 import 'package:waseet_com_app/core/routes.dart';
 import 'package:waseet_com_app/screens/about_app/about_app.dart';
@@ -51,6 +50,10 @@ class Body extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     ListTile(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, AppRoutes.editprofileuser.name!);
+                      },
                       leading: Container(
                         width: 40,
                         height: 40,
@@ -247,11 +250,13 @@ class Body extends StatelessWidget {
                 valueListenable: Boxes.getBoxUsers().listenable(),
                 builder: (context, boxData, child) {
                   final user = boxData.values.last;
+                  print(user);
                   return Center(
                     child: InkWell(
                       onTap: () {
-                        OpHiveUser().deleteUser(user);
-                        Navigator.pushNamed(context, AppRoutes.welcome.name!);
+                        // OpHiveUser().deleteUser(user);
+                        // Navigator.pushNamed(context, AppRoutes.welcome.name!);
+                        print(user.userName);
                       },
                       child: Text(
                         'تسجيل الخروج',

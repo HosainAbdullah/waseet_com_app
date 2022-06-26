@@ -169,6 +169,7 @@ class _ClientRequestsState extends State<ClientRequests>
                 ListView.builder(
                   scrollDirection: Axis.vertical,
                   padding: const EdgeInsets.all(iPaddingAllScreen),
+                  itemCount: items.length,
                   itemBuilder: (context, index) {
                     // final itemsAcd = items[index];
                     if (items[index].acdStatus == 1) {
